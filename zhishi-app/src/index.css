@@ -1,0 +1,244 @@
+/* 导入设计系统 */
+@import './styles/design-system.css';
+/* 导入状态与Skeleton样式 */
+@import './styles/states.css';
+
+/* 全局样式重置和优化 */
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: var(--bg);
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  color: var(--text);
+}
+
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+/* 移动端优化 */
+@media (max-width: 768px) {
+  html {
+    /* 防止移动端缩放 */
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+  }
+  
+  body {
+    /* 允许滚动但防止过度滚动 */
+    overscroll-behavior-y: contain;
+    /* 隐藏滚动条但保持滚动功能 */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  body::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* 触摸优化 */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* 允许文本选择的元素 */
+input, textarea, [contenteditable] {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+}
+
+/* 按钮和可点击元素的触摸反馈 */
+button, [role="button"], .clickable {
+  cursor: pointer;
+  transition: transform 0.1s ease, opacity 0.1s ease;
+  min-width: 44px;
+  min-height: 44px;
+}
+
+button:active, [role="button"]:active, .clickable:active {
+  transform: scale(0.98);
+  opacity: 0.8;
+}
+
+/* 滚动条样式 */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+/* 安全区域适配 */
+@supports (padding: max(0px)) {
+  .safe-area-top {
+    padding-top: max(20px, env(safe-area-inset-top));
+  }
+  
+  .safe-area-bottom {
+    padding-bottom: max(20px, env(safe-area-inset-bottom));
+  }
+  
+  .safe-area-left {
+    padding-left: max(20px, env(safe-area-inset-left));
+  }
+  
+  .safe-area-right {
+    padding-right: max(20px, env(safe-area-inset-right));
+  }
+}
+
+/* 字体优化 */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: var(--font-semibold);
+  line-height: 1.3;
+  margin: 0;
+  color: var(--neutral-100);
+}
+
+h1 { font-size: var(--fs-900); font-weight: var(--font-bold); letter-spacing: -0.5px; }
+h2 { font-size: var(--fs-800); font-weight: var(--font-bold); letter-spacing: -0.4px; }
+h3 { font-size: var(--fs-700); font-weight: var(--font-semibold); letter-spacing: -0.3px; }
+h4 { font-size: var(--fs-600); font-weight: var(--font-semibold); letter-spacing: -0.2px; }
+
+p {
+  line-height: 1.6;
+  margin: 0 0 var(--spacing-4) 0;
+  color: var(--muted);
+  font-size: var(--fs-400);
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+/* 链接样式 */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* 图片优化 */
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 动画性能优化 */
+* {
+  will-change: auto;
+}
+
+.animate-transform {
+  will-change: transform;
+}
+
+.animate-opacity {
+  will-change: opacity;
+}
+
+/* 加载状态 */
+.loading {
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+/* 隐藏元素 */
+.hidden {
+  display: none !important;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* 响应式断点 */
+@media (max-width: 480px) {
+  /* 小屏手机 */
+  body {
+    font-size: var(--text-sm);
+  }
+  
+  h1 { font-size: var(--text-3xl); }
+  h2 { font-size: var(--text-2xl); }
+  h3 { font-size: var(--text-xl); }
+  h4 { font-size: var(--text-lg); }
+}
+
+@media (min-width: 481px) and (max-width: 768px) {
+  /* 大屏手机 */
+  body {
+    font-size: var(--text-base);
+  }
+}
+
+@media (min-width: 769px) {
+  /* 平板和桌面 */
+  body {
+    font-size: var(--text-base);
+  }
+  
+  /* 桌面端增强效果 */
+  .glass {
+    backdrop-filter: var(--glass-blur-strong);
+  }
+  
+  .glass-strong {
+    backdrop-filter: var(--glass-blur-ultra);
+  }
+  
+  /* 桌面端性能优化 */
+  .card {
+    will-change: transform, box-shadow;
+  }
+  
+  .card:hover {
+    will-change: transform, box-shadow;
+  }
+  
+  .domain-card {
+    will-change: transform, box-shadow;
+  }
+  
+  .domain-card:hover {
+    will-change: transform, box-shadow;
+  }
+}

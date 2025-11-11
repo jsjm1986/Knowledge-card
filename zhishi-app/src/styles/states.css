@@ -1,0 +1,58 @@
+/* 统一组件状态与Skeleton/Empty样式 */
+
+/* 焦点可见环（键盘导航） */
+:where(a, button, input, textarea, select, [tabindex], .focusable):focus-visible {
+  outline: 2px solid var(--brand);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* 禁用态（降低对比但确保可读） */
+.is-disabled,
+:where(button, [role="button"]).is-disabled,
+:where(button, [role="button"]):disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* 加载骨架 - 基础块 */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0.04) 100%);
+  animation: shimmer 1.6s ease-in-out infinite;
+}
+
+.skeleton--line { height: 12px; border-radius: 6px; }
+.skeleton--title { height: 20px; border-radius: 8px; }
+.skeleton--circle { border-radius: 9999px; }
+
+/* 骨架密度工具类 */
+.skeleton-sm { height: 8px; }
+.skeleton-md { height: 12px; }
+.skeleton-lg { height: 16px; }
+
+/* 空状态卡片 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-8);
+  background: var(--glass-white);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-xl);
+  backdrop-filter: var(--glass-blur);
+  text-align: center;
+  color: var(--muted);
+}
+
+.empty-state__icon { font-size: 48px; filter: drop-shadow(0 4px 8px rgba(0,0,0,0.2)); }
+.empty-state__title { font-size: var(--fs-600); font-weight: var(--font-semibold); color: var(--text); }
+.empty-state__desc { font-size: var(--fs-400); color: var(--muted); }
+.empty-state__actions { display: flex; gap: var(--spacing-3); margin-top: var(--spacing-3); }
+
+
